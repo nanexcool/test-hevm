@@ -2,20 +2,17 @@ pragma solidity ^0.5.10;
 
 import "ds-test/test.sol";
 
-import "./TestHevm.sol";
+contract Token {
+    function totalSupply() external view returns (uint256);
+}
 
 contract TestHevmTest is DSTest {
-    TestHevm hevm;
 
-    function setUp() public {
-        hevm = new TestHevm();
-    }
-
-    function testFail_basic_sanity() public {
-        assertTrue(false);
-    }
-
+    Token mkr;
+    
     function test_basic_sanity() public {
-        assertTrue(true);
+        mkr = Token(0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2);
+
+        assertEq(mkr.totalSupply(), 1000000);
     }
 }
